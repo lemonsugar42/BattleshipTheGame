@@ -31,8 +31,7 @@ namespace BattleshipTheGame
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.Canvas = new System.Windows.Forms.PictureBox();
-            this.ListBox = new System.Windows.Forms.ListBox();
-            this.Button = new System.Windows.Forms.Button();
+            this.CurPrjct = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,48 +45,24 @@ namespace BattleshipTheGame
             this.Canvas.TabIndex = 0;
             this.Canvas.TabStop = false;
             // 
-            // ListBox
+            // CurPrjct
             // 
-            this.ListBox.FormattingEnabled = true;
-            this.ListBox.ItemHeight = 19;
-            this.ListBox.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.ListBox.Location = new System.Drawing.Point(19, 14);
-            this.ListBox.Name = "ListBox";
-            this.ListBox.Size = new System.Drawing.Size(46, 232);
-            this.ListBox.TabIndex = 1;
-            // 
-            // Button
-            // 
-            this.Button.BackColor = System.Drawing.SystemColors.Window;
-            this.Button.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button.Location = new System.Drawing.Point(84, 14);
-            this.Button.Name = "Button";
-            this.Button.Size = new System.Drawing.Size(63, 35);
-            this.Button.TabIndex = 2;
-            this.Button.Text = "Next";
-            this.Button.UseVisualStyleBackColor = false;
+            this.CurPrjct.AutoSize = true;
+            this.CurPrjct.Location = new System.Drawing.Point(12, 425);
+            this.CurPrjct.Name = "CurPrjct";
+            this.CurPrjct.Size = new System.Drawing.Size(66, 19);
+            this.CurPrjct.TabIndex = 3;
+            this.CurPrjct.Text = "CurPrjct";
             // 
             // Form2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(782, 453);
-            this.Controls.Add(this.Button);
-            this.Controls.Add(this.ListBox);
+            this.Controls.Add(this.CurPrjct);
             this.Controls.Add(this.Canvas);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Garamond", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form2";
@@ -102,7 +77,6 @@ namespace BattleshipTheGame
         #endregion
 
         private System.Windows.Forms.PictureBox Canvas;
-        private System.Windows.Forms.ListBox ListBox;
-        private System.Windows.Forms.Button Button;
+        private System.Windows.Forms.Label CurPrjct;
     }
 }

@@ -16,7 +16,5 @@ namespace User
             Score = 0;
             CurPrjct = Projectiles;
         }
-
-
     }
 }

@@ -1,30 +1,31 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Microsoft.Office.Interop.Excel;
 
-namespace ExcelApp
+namespace Database
 {
-    public static class Excel
+    public static class DbApp
     {
         private static Application _excelApp;
         private static Worksheet _excelSheet;
         private const int A = 1;
         private const int B = 2;
         private const int Bestest = 10;
-        public static Application ExcelApp()
+        private static Application ExcelApp()
         {
             _excelApp = new Application();
             if (_excelApp == null) throw new Exception("Excel is not installed");
             else
             {
+                _excelApp.DisplayAlerts = false;
                 return _excelApp;
             }
         }
         private static bool Launch()
         {
             bool first;
-            string curdir = Environment.CurrentDirectory;
-            var dir = Directory.GetParent(Directory.GetParent(@curdir).ToString());
+            var dir = Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString());
             try
             {
                 ExcelApp().Workbooks.Open($@"{dir}\Database\Records.xlsx", Editable: true);
@@ -44,7 +45,7 @@ namespace ExcelApp
             Range records = _excelSheet.Range[_excelSheet.Cells[1, A], _excelSheet.Cells[rows, B]];
             records.Sort(records.Columns[B], XlSortOrder.xlDescending, records.Columns[A], Type.Missing, XlSortOrder.xlAscending);
         }
-        public static void Update(string name, string score)
+        private static void Update(string name, string score)
         {
             bool first = Launch();
             _excelSheet = _excelApp.ActiveWorkbook.Sheets[1];
@@ -56,7 +57,6 @@ namespace ExcelApp
             _excelSheet.Cells[id, A] = name;
             _excelSheet.Cells[id, B] = score;
             Sort(id);
-            _excelApp.ActiveWorkbook.Save();
         }
         public static void Show(string name, string score, out string[] usernames, out string[] scores)
         {
@@ -80,7 +80,14 @@ namespace ExcelApp
                     i++;
                 }
             }
+            _excelApp.ActiveWorkbook.Save();
             _excelApp.ActiveWorkbook.Close();
+        }
+        public static void GetShipParams(int i, out string[] parameters)
+        {
+            var dir = Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString());
+            string temp = File.ReadLines($@"{dir}\ShipParams.txt").ElementAt(i);
+            parameters = temp.Split(' ');
         }
     }
 }
